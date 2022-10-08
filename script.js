@@ -4,6 +4,9 @@ let playerSelection;
 let computerSelection;
 const selectionBtns = [...document.querySelectorAll("button")];
 const results = document.querySelector(".results-text");
+const playerPoints = document.querySelector(".player-score");
+const computerPoints = document.querySelector(".computer-score");
+const winner = document.querySelector(".winner");
 
 const options = {
   0: "rock",
@@ -38,6 +41,34 @@ const getPlayerChoice = function (e) {
   playerSelection = e.target.dataset.selection;
 };
 
+const updateScore = function (winner) {
+  let score;
+
+  if (winner === "player") {
+    score = +playerPoints.textContent;
+    score++;
+    playerPoints.textContent = score;
+  }
+
+  if (winner === "computer") {
+    score = +computerPoints.textContent;
+    score++;
+    computerPoints.textContent = score;
+  }
+};
+
+const checkWinner = function () {
+  if (+playerPoints.textContent > 4) {
+    winner.textContent = "You win the game!";
+    return;
+  }
+
+  if (+computerPoints.textContent > 4) {
+    winner.textContent = "The computer wins the game!";
+    return;
+  }
+};
+
 const playRound = function (e) {
   getComputerChoice();
   getPlayerChoice(e);
@@ -48,20 +79,24 @@ const playRound = function (e) {
     results.textContent = `You win! ${capitalize(
       playerSelection
     )} beats ${capitalize(computerSelection)}`;
-    return 1;
+    updateScore("player");
+    // return 1;
   }
 
   if (whatBeatsWhat[computerSelection] === playerSelection) {
     results.textContent = `You lose! ${capitalize(
       computerSelection
     )} beats ${capitalize(playerSelection)}`;
-    return 0;
+    updateScore("computer");
+    // return 0;
   }
 
   if (playerSelection === computerSelection) {
     results.textContent = "Tie!";
     // return playRound();
   }
+
+  checkWinner();
 };
 
 const game = function () {
