@@ -2,6 +2,7 @@
 
 let playerSelection;
 let computerSelection;
+const selectionBtns = [...document.querySelectorAll("button")];
 
 const options = {
   0: "rock",
@@ -25,28 +26,36 @@ const getComputerChoice = function () {
   computerSelection = options[Math.floor(Math.random() * 3)];
 };
 
+/*
 const getPlayerChoice = function () {
   playerSelection = prompt("Rock, Paper, or Scissors?")?.toLowerCase();
   if (!whatBeatsWhat[playerSelection]) getPlayerChoice();
 };
+*/
 
-const playRound = function () {
+const getPlayerChoice = function (e) {
+  playerSelection = e.target.dataset.selection;
+};
+
+const playRound = function (e) {
   getComputerChoice();
-  getPlayerChoice();
+  getPlayerChoice(e);
 
   if (!playerSelection) return -1;
 
   if (whatBeatsWhat[playerSelection] === computerSelection) {
+    console.log("You win");
     return 1;
   }
 
   if (whatBeatsWhat[computerSelection] === playerSelection) {
+    console.log("yoo lose");
     return 0;
   }
 
   if (playerSelection === computerSelection) {
-    alert("It's a tie!");
-    return playRound();
+    console.log("tie");
+    // return playRound();
   }
 };
 
@@ -77,4 +86,5 @@ const game = function () {
     : `The computer wins the game with a score of ${computerScore} to ${playerScore}!`;
 };
 
-console.log(game());
+// Event listeners
+selectionBtns.forEach((btn) => btn.addEventListener("click", playRound));
