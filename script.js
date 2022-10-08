@@ -3,6 +3,7 @@
 let playerSelection;
 let computerSelection;
 const selectionBtns = [...document.querySelectorAll("button")];
+const results = document.querySelector(".results-text");
 
 const options = {
   0: "rock",
@@ -44,17 +45,21 @@ const playRound = function (e) {
   if (!playerSelection) return -1;
 
   if (whatBeatsWhat[playerSelection] === computerSelection) {
-    console.log("You win");
+    results.textContent = `You win! ${capitalize(
+      playerSelection
+    )} beats ${capitalize(computerSelection)}`;
     return 1;
   }
 
   if (whatBeatsWhat[computerSelection] === playerSelection) {
-    console.log("yoo lose");
+    results.textContent = `You lose! ${capitalize(
+      computerSelection
+    )} beats ${capitalize(playerSelection)}`;
     return 0;
   }
 
   if (playerSelection === computerSelection) {
-    console.log("tie");
+    results.textContent = "Tie!";
     // return playRound();
   }
 };
