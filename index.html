@@ -9,21 +9,27 @@
     <script defer src="./script.js"></script>
   </head>
   <body>
-    <button data-selection="rock">Rock</button>
-    <button data-selection="paper">Paper</button>
-    <button data-selection="scissors">Scissors</button>
-    <div class="results">
-      <h2>Results:</h2>
-      <p class="results-text"></p>
-      <div class="win-results">
-        <p>Player points:&nbsp;</p>
-        <p class="player-score">0</p>
+    <div class="container">
+      <h1>Rock, Paper, Scissors</h1>
+      <div class="selections">
+        <button class="btn-selection" data-selection="rock">🪨</button>
+        <button class="btn-selection" data-selection="paper">📄</button>
+        <button class="btn-selection" data-selection="scissors">✂</button>
       </div>
-      <div class="win-results">
-        <p>Computer points:&nbsp;</p>
-        <p class="computer-score">0</p>
+      <div class="results">
+        <h2>Results:</h2>
+        <p class="results-text"></p>
+        <div class="win-results">
+          <p>Player points:&nbsp;</p>
+          <p class="player-score">0</p>
+        </div>
+        <div class="win-results">
+          <p>Computer points:&nbsp;</p>
+          <p class="computer-score">0</p>
+        </div>
+        <h3 class="winner"></h3>
       </div>
-      <h3 class="winner"></h3>
+      <button class="btn-reset">Play again!</button>
     </div>
   </body>
 </html>

@@ -1,3 +1,49 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: beige;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1 {
+  padding: 48px 0;
+  width: 100%;
+  text-align: center;
+}
+
+.selections {
+  display: flex;
+  gap: 6rem;
+  margin-bottom: 36px;
+}
+
+.btn-selection {
+  font-size: 3rem;
+  cursor: pointer;
+  background-color: beige;
+  border: none;
+  padding: 0;
+}
+
+.btn-selection:hover {
+  scale: 1.2;
+}
+
+.btn-selection:active {
+  scale: 1.1;
+}
+
 .win-results {
   display: flex;
   align-items: center;
