@@ -10,26 +10,46 @@
   </head>
   <body>
     <div class="container">
-      <h1>Rock, Paper, Scissors</h1>
+      <h1>Rock &nbsp; Paper &nbsp; Scissors</h1>
+      <div class="winning-score">
+        <p>Winning score:&nbsp;</p>
+        <input
+          class="winning-score-text"
+          type="number"
+          min="0"
+          max="99"
+          value="5"
+        />
+      </div>
+      <h2 class="winning-score-statement">
+        First to <span class="inline-score">5</span> points wins!
+      </h2>
       <div class="selections">
         <button class="btn-selection" data-selection="rock">🪨</button>
         <button class="btn-selection" data-selection="paper">📄</button>
         <button class="btn-selection" data-selection="scissors">✂</button>
       </div>
       <div class="results">
-        <h2>Results:</h2>
-        <p class="results-text"></p>
-        <div class="win-results">
-          <p>Player points:&nbsp;</p>
-          <p class="player-score">0</p>
-        </div>
-        <div class="win-results">
-          <p>Computer points:&nbsp;</p>
-          <p class="computer-score">0</p>
+        <p class="results-text">&nbsp;</p>
+        <button class="btn-reset hidden">Play again!</button>
+        <div class="scores-section">
+          <div class="win-results">
+            <div class="game-symbols-player">
+              <div class="player-symbols player">🧍</div>
+              <div class="player-selection">❓</div>
+            </div>
+            <p class="player-score">0</p>
+          </div>
+          <div class="win-results">
+            <div class="game-symbols-computer">
+              <div class="player-symbols computer">💻</div>
+              <div class="computer-selection">❓</div>
+            </div>
+            <p class="computer-score">0</p>
+          </div>
         </div>
         <h3 class="winner"></h3>
       </div>
-      <button class="btn-reset">Play again!</button>
     </div>
   </body>
 </html>

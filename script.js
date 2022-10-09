@@ -3,7 +3,13 @@
 let playerSelection;
 let computerSelection;
 const selectionBtns = [...document.querySelectorAll(".btn-selection")];
+const winningScore = document.querySelector(".winning-score-text");
+const inlineScore = document.querySelector(".inline-score");
 const results = document.querySelector(".results-text");
+const player = document.querySelector(".player");
+const computer = document.querySelector(".computer");
+const playerPick = document.querySelector(".player-selection");
+const computerPick = document.querySelector(".computer-selection");
 const playerPoints = document.querySelector(".player-score");
 const computerPoints = document.querySelector(".computer-score");
 const winner = document.querySelector(".winner");
@@ -15,6 +21,12 @@ const options = {
   2: "scissors",
 };
 
+const symbols = {
+  rock: "🪨",
+  paper: "📄",
+  scissors: "✂",
+};
+
 const whatBeatsWhat = {
   rock: "scissors",
   paper: "rock",
@@ -22,17 +34,19 @@ const whatBeatsWhat = {
 };
 
 const capitalize = function (str) {
-  if (!str) return;
-
   return `${str[0].toUpperCase()}${str.slice(1).toLowerCase()}`;
 };
 
 const getComputerChoice = function () {
-  computerSelection = options[Math.floor(Math.random() * 3)];
+  const pick = options[Math.floor(Math.random() * 3)];
+  computerSelection = pick;
+  computerPick.textContent = symbols[pick];
 };
 
 const getPlayerChoice = function (e) {
-  playerSelection = e.target.dataset.selection;
+  const pick = e.target.dataset.selection;
+  playerSelection = pick;
+  playerPick.textContent = symbols[pick];
 };
 
 const updateScore = function (winner) {
@@ -51,29 +65,39 @@ const updateScore = function (winner) {
   }
 };
 
+const updateWinningScore = function (e) {
+  const score = e.target.value;
+
+  if (score < 0 || score > 99) return;
+
+  inlineScore.textContent = score;
+  resetGame();
+};
+
 const checkWinner = function () {
-  if (+playerPoints.textContent > 4) {
-    winner.textContent = "You win the game!";
-    endGame();
+  if (+playerPoints.textContent === +winningScore.value) {
+    results.textContent = "You win the game!";
+    endGame(computer);
     return;
   }
 
-  if (+computerPoints.textContent > 4) {
-    winner.textContent = "The computer wins the game!";
-    endGame();
+  if (+computerPoints.textContent === +winningScore.value) {
+    results.textContent = "The computer wins the game!";
+    endGame(player);
     return;
   }
 };
 
-const endGame = function () {
+const endGame = function (winner) {
   selectionBtns.forEach((btn) => btn.removeEventListener("click", playRound));
+  results.classList.add("results-text-win");
+  winner.textContent = "💥";
+  resetBtn.classList.remove("hidden");
 };
 
 const playRound = function (e) {
   getComputerChoice();
   getPlayerChoice(e);
-
-  if (!playerSelection) return -1;
 
   if (whatBeatsWhat[playerSelection] === computerSelection) {
     results.textContent = `You win! ${capitalize(
@@ -97,10 +121,16 @@ const playRound = function (e) {
 };
 
 const resetGame = function () {
-  results.textContent = "";
+  results.textContent = " ";
+  results.classList.remove("results-text-win");
   playerPoints.textContent = 0;
   computerPoints.textContent = 0;
   winner.textContent = "";
+  playerPick.textContent = "❓";
+  computerPick.textContent = "❓";
+  player.textContent = "🧍";
+  computer.textContent = "💻";
+  resetBtn.classList.add("hidden");
   selectionBtns.forEach((btn) => btn.addEventListener("click", playRound));
 };
 
@@ -110,3 +140,4 @@ selectionBtns.forEach((btn) =>
   btn.addEventListener("dblclick", (e) => e.preventDefault())
 );
 resetBtn.addEventListener("click", resetGame);
+winningScore.addEventListener("input", updateWinningScore);

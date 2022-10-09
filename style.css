@@ -5,14 +5,15 @@
 }
 
 body {
-  background-color: beige;
+  background-color: #c3fae8;
+  color: #343a40;
 }
 
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 800px;
+  max-width: 700px;
   margin: 0 auto;
 }
 
@@ -20,6 +21,28 @@ h1 {
   padding: 48px 0;
   width: 100%;
   text-align: center;
+  font-size: 48px;
+  text-transform: uppercase;
+}
+
+.winning-score {
+  font-size: 20px;
+  display: flex;
+  margin-bottom: 24px;
+}
+
+.winning-score input {
+  width: 36px;
+}
+
+.winning-score-statement {
+  font-size: 36px;
+  margin-bottom: 36px;
+}
+
+.inline-score {
+  color: #087f5b;
+  font-size: 48px;
 }
 
 .selections {
@@ -29,11 +52,12 @@ h1 {
 }
 
 .btn-selection {
-  font-size: 3rem;
+  font-size: 62px;
   cursor: pointer;
-  background-color: beige;
+  background-color: #c3fae8;
   border: none;
   padding: 0;
+  transition: all 0.2s;
 }
 
 .btn-selection:hover {
@@ -44,7 +68,79 @@ h1 {
   scale: 1.1;
 }
 
-.win-results {
+.results {
+  width: 100%;
+  text-align: center;
+}
+
+.results-text {
+  font-size: 24px;
+  margin-bottom: 36px;
+  padding-bottom: 24px;
+}
+
+.results-text-win {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.btn-reset {
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  color: #c3fae8;
+  border: none;
+  border-radius: 9px;
+  background-color: #087f5b;
+  padding: 12px 24px;
+  transition-property: background-color, scale;
+  transition-duration: 0.4s;
+}
+
+.btn-reset:hover {
+  background-color: #38d9a9;
+  scale: 1.1;
+}
+
+.scores-section {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.game-symbols-player {
   display: flex;
   align-items: center;
+}
+
+.game-symbols-computer {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+
+.player-symbols {
+  font-size: 72px;
+  margin-bottom: 24px;
+}
+
+.player-selection,
+.computer-selection {
+  font-size: 36px;
+  width: 45px;
+}
+
+.player-score,
+.computer-score {
+  font-size: 48px;
+}
+
+.win-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hidden {
+  visibility: hidden;
 }
