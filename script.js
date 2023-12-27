@@ -22,7 +22,7 @@ const options = {
 };
 
 const symbols = {
-  rock: "🪨",
+  rock: "⛰️",
   paper: "📄",
   scissors: "✂",
 };
